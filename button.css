@@ -8,4 +8,5 @@ button:hover {
 
 body {
     -webkit-app-region: no-drag;
+    background-color: transparent;
 }

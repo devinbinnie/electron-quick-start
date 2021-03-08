@@ -17,11 +17,10 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools({mode: 'detach'})
+  //mainWindow.webContents.openDevTools()
 
   const browserView = new BrowserView();
   browserView.webContents.loadFile('button.html');
-  browserView.webContents.openDevTools({mode: 'detach'});
   mainWindow.addBrowserView(browserView);
   browserView.setBounds({x: 8, y: 8, width: 200, height: 40});
 }
