@@ -1,0 +1,11 @@
+button {
+    -webkit-app-region: no-drag;
+}
+
+button:hover {
+    background: red;
+}
+
+body {
+    -webkit-app-region: no-drag;
+}
