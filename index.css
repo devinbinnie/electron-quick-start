@@ -1,0 +1,11 @@
+.header {
+    width: 100%;
+    height: 40px;
+    -webkit-app-region: drag;
+    background-color: black;
+}
+
+body {
+    margin: 0;
+    height: 40px;
+}

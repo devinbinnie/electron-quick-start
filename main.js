@@ -1,22 +1,39 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
+const {app, BrowserWindow, BrowserView, ipcMain} = require('electron')
+const path = require('path');
 
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
+    frame: false,
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  //mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools({mode: 'detach'});
+
+  const browserView = new BrowserView({
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  });
+  mainWindow.addBrowserView(browserView);
+  browserView.setBounds({x: 0, y: 40, width: 800, height: 600});
+  browserView.webContents.loadURL('https://community-daily.mattermost.com');
+
+  const mainView = new BrowserView();
+  mainWindow.addBrowserView(mainView);
+  mainView.setBounds({x: 0, y: 0, width: 800, height: 40});
+  mainView.webContents.loadFile('index.html');
+  //browserView.webContents.openDevTools({mode: 'detach'});
+
+  ipcMain.on('call-remove-browser-view', () => {
+    mainWindow.removeBrowserView(null);
+  });
 }
 
 // This method will be called when Electron has finished
