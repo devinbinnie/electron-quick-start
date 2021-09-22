@@ -23,7 +23,7 @@ function createWindow () {
   });
   mainWindow.addBrowserView(browserView);
   browserView.setBounds({x: 0, y: 40, width: 800, height: 600});
-  browserView.webContents.loadURL('https://community-daily.mattermost.com');
+  browserView.webContents.loadURL('https://google.com');
 
   const mainView = new BrowserView();
   mainWindow.addBrowserView(mainView);
